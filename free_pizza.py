@@ -121,6 +121,7 @@ def main():
         "Frank": [500],
     }
 
+    #edit1
     if args.csv:
         try:
             customers = read_csv_to_customers(args.csv)
