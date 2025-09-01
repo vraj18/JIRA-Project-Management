@@ -73,7 +73,7 @@ def read_csv_to_customers(path: str) -> Dict[str, List[float]]:
             try:
                 price = float(r['order_price'])
             except Exception:
-                # skip invalid rows but warn
+
                 print(f"Warning: skipping row with invalid order_price: {r}", file=sys.stderr)
                 continue
             customers[name].append(price)
@@ -81,7 +81,6 @@ def read_csv_to_customers(path: str) -> Dict[str, List[float]]:
 
 
 def plot_and_save(df: pd.DataFrame, out_bar: str = "total_sales.png", out_pie: str = "income_share.png") -> None:
-    # Bar chart: total sales per customer
     plt.figure(figsize=(8, 4))
     plt.bar(df['customer'], df['total_sales'])
     plt.title('Total sales per customer')
@@ -121,7 +120,6 @@ def main():
         "Frank": [500],
     }
 
-    #edit1
     if args.csv:
         try:
             customers = read_csv_to_customers(args.csv)
@@ -137,7 +135,6 @@ def main():
     df.to_csv(args.out_summary, index=False)
     print(f"Saved summary to {args.out_summary}")
 
-    # Save plots
     plot_and_save(df, args.out_bar, args.out_pie)
     print(f"Saved bar chart to {args.out_bar} and pie chart to {args.out_pie}")
 
